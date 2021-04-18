@@ -1,0 +1,1 @@
+export const CatRepository = 'CAT_REPOSITORY';

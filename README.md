@@ -1,5 +1,4 @@
 
-
 # Cat History
 
 ### Requirements
@@ -23,5 +22,16 @@
 | enhance | Commit for feature enhancements |
 | etc     | And the rest                    |
 
+### Dotenv
+Environment files should be placed in root folder.
+
+### Tasks
+- [x] Project configurations. (dotenv, TypeORM)
+- [ ] Implement Register cat API
+- [ ] Implement Lookup cat API
+- [ ] Implement Register cat API
+- [ ] Implement File upload feature.
+
 ### Reference
  * [NestJs](https://docs.nestjs.com/)
+ * [TypeORM](https://typeorm.io/#/)
