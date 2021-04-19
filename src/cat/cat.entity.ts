@@ -2,6 +2,14 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedCol
 
 @Entity()
 export class Cat {
+  constructor(
+    name: string,
+    description: string,
+  ) {
+    this.name = name;
+    this.description = description;
+  }
+
   @PrimaryGeneratedColumn()
   id: number;
 

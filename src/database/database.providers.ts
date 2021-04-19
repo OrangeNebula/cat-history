@@ -4,12 +4,18 @@ import { DatabaseConnection } from './database.constants';
 export const databaseProviders = [
   {
     provide: DatabaseConnection,
-    useFactory: async () => await createConnection({
-      type: 'sqlite',
-      database: ':memory:',
-      entities: [
-        __dirname + '/../**/*.entity{.ts,.js}',
-      ]
-    }),
+    useFactory: async () => {
+      const connection = await createConnection({
+        type: 'sqlite',
+        database: ':memory:',
+        entities: [
+          __dirname + '/../**/*.entity{.ts,.js}',
+        ],
+        migrations: ['./migration/*.ts'],
+        synchronize: true,
+      });
+      // await connection.runMigrations();
+      return connection;
+    },
   },
 ];
