@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CatRepository } from './cat.constants';
 import { Repository } from 'typeorm';
 import { Cat } from './cat.entity';
-import { CreateCatDto } from './dto/create-cat.dto';
+import { RequestCreateCatDto } from './dto/request-create-cat.dto';
 
 @Injectable()
 export class CatService {
@@ -12,12 +12,16 @@ export class CatService {
   ) {
   }
 
-  async create(dto: CreateCatDto) {
+  async create(dto: RequestCreateCatDto) {
     const cat = new Cat(dto.name, dto.description);
     return this.catRepository.save(cat);
   }
 
   async findAll(): Promise<Cat[]> {
     return this.catRepository.find();
+  }
+
+  async find(id: number): Promise<Cat> {
+    return this.catRepository.findOne(id);
   }
 }

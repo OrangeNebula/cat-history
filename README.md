@@ -32,6 +32,7 @@ Environment files should be placed in root folder.
 - [ ] Implement Search cat API
 - [ ] Implement File upload feature.
 - [ ] Create migration scripts.
+- [ ] Add db seed data for testing.
 
 ### Reference
  * [NestJs](https://docs.nestjs.com/)

@@ -1,4 +1,4 @@
-export class CreateCatDto {
+export class RequestCreateCatDto {
   name: string;
   description: string;
 }
