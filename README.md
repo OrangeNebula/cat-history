@@ -29,7 +29,7 @@ Environment files should be placed in root folder.
 - [x] Project configurations. (dotenv, TypeORM)
 - [x] Implement Register cat API
 - [ ] Implement Lookup cat API
-- [ ] Implement Register cat API
+- [ ] Implement Search cat API
 - [ ] Implement File upload feature.
 - [ ] Create migration scripts.
 
