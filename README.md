@@ -26,13 +26,15 @@
 Environment files should be placed in root folder.
 
 ### Tasks
-- [x] Project configurations. (dotenv, TypeORM)
-- [x] Implement Register cat API
-- [ ] Implement Lookup cat API
-- [ ] Implement Search cat API
+- [x] Project configurations. (dotenv, TypeORM) (Used 120min)
+- [x] Implement Register cat API (Used 30min)
+- [x] Implement Lookup cat API (Used 30min)
+- [x] Implement Search cat API (Used 70min)
 - [ ] Implement File upload feature.
 - [ ] Create migration scripts.
+- [ ] Add db dev, prod configurations (e.g. logging, connection)
 - [ ] Add db seed data for testing.
+- [ ] Add cursor feature for Search cat API
 
 ### Reference
  * [NestJs](https://docs.nestjs.com/)

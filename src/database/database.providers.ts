@@ -13,6 +13,7 @@ export const databaseProviders = [
         ],
         migrations: ['./migration/*.ts'],
         synchronize: true,
+        logging: 'all',
       });
       // await connection.runMigrations();
       return connection;
