@@ -11,9 +11,9 @@
 ### API
 |      API     | Method |    Path   |
 |:------------:|:------:|:---------:|
-| Register cat | POST   | /cats     |
-| Search cat   | GET    | /cats     |
-| Lookup cat   | GET    | /cats/:id |
+| Register cat | POST   | /cat     |
+| Search cat   | GET    | /cat/search     |
+| Lookup cat   | GET    | /cat/:id |
 
 ### Commit Tags
 |   Tag   |           Description           |
@@ -33,8 +33,9 @@ Environment files should be placed in root folder.
 - [ ] Implement File upload feature.
 - [ ] Create migration scripts.
 - [ ] Add db dev, prod configurations (e.g. logging, connection)
-- [ ] Add db seed data for testing.
+- [x] Add db seed cat data for testing.
 - [ ] Add cursor feature for Search cat API
+- [ ] Add test code for cat service and domain classes. (Used 20min)
 
 ### Reference
  * [NestJs](https://docs.nestjs.com/)

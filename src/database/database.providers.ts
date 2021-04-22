@@ -1,5 +1,6 @@
 import { createConnection } from 'typeorm';
 import { DatabaseConnection } from './database.constants';
+import { CatSeeder } from './seed/cat.seeder';
 
 export const databaseProviders = [
   {
@@ -16,6 +17,9 @@ export const databaseProviders = [
         logging: 'all',
       });
       // await connection.runMigrations();
+      // TODO: Any other smart idea for multiple seeders?
+      const catSeeder = new CatSeeder();
+      await catSeeder.run(connection);
       return connection;
     },
   },
