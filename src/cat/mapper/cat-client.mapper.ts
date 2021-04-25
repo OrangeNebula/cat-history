@@ -1,4 +1,4 @@
-import { Cat } from '../cat.entity';
+import { Cat } from '../domain/cat.entity';
 import { CatDto } from '../dto/cat.dto';
 import { Injectable } from '@nestjs/common';
 
@@ -9,6 +9,7 @@ export class CatClientMapper {
       cat.id,
       cat.name,
       cat.description,
+      cat.images ? cat.images.map((item) => item.path) : [],
     );
   }
 }

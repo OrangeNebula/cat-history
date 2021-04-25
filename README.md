@@ -30,12 +30,14 @@ Environment files should be placed in root folder.
 - [x] Implement Register cat API (Used 30min)
 - [x] Implement Lookup cat API (Used 30min)
 - [x] Implement Search cat API (Used 70min)
-- [ ] Implement File upload feature.
+- [x] Implement File upload feature.
 - [ ] Create migration scripts.
 - [ ] Add db dev, prod configurations (e.g. logging, connection)
 - [x] Add db seed cat data for testing. (Used 20min)
-- [ ] Add cursor feature for Search cat API
+- [ ] Add cursor feature for Search cat API.
 - [ ] Add test code for cat service and domain classes.
+- [ ] Upload images mime type validation.
+- [ ] Add pre-commit, test stage.
 
 ### Reference
  * [NestJs](https://docs.nestjs.com/)

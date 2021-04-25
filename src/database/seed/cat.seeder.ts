@@ -1,11 +1,11 @@
 import { Seeder } from './seeder';
 import { Connection } from 'typeorm';
-import { Cat } from '../../cat/cat.entity';
+import { Cat } from '../../cat/domain/cat.entity';
 
 export const catSeedData = [
-  new Cat('젖소냥', '새로 만난 젖소냥이!'),
-  new Cat('염소냥', '새로 만난 염소냥이!'),
-  new Cat('바둑냥', '새로 만난 바둑냥이!'),
+  new Cat('젖소냥', '새로 만난 젖소냥이!', []),
+  new Cat('염소냥', '새로 만난 염소냥이!', []),
+  new Cat('바둑냥', '새로 만난 바둑냥이!', []),
 ]
 
 export class CatSeeder implements Seeder {

@@ -1,10 +1,22 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+  Post,
+  Query,
+  UploadedFiles,
+  UseInterceptors,
+} from '@nestjs/common';
 import { RequestCreateCatDto } from './dto/request-create-cat.dto';
-import { CatService } from './cat.service';
+import { CatService } from './services/cat.service';
 import { CatDto } from './dto/cat.dto';
 import { CatClientMapper } from './mapper/cat-client.mapper';
 import { ResponseSearchCatDto } from './dto/response-search-cat.dto';
 import { CatSearchOptions } from './domain/cat-search-options';
+import { FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('cat')
 export class CatController {
@@ -15,8 +27,16 @@ export class CatController {
   }
 
   @Post()
-  async create(@Body() createCatDto: RequestCreateCatDto) {
-    const cat = await this.catService.create(createCatDto);
+  @UseInterceptors(FilesInterceptor('images'))
+  async create(
+    @Body() dto: RequestCreateCatDto,
+    @UploadedFiles() images: Express.Multer.File[],
+  ) {
+    const cat = await this.catService.create(
+      dto.name,
+      dto.description,
+      images,
+    );
     return this.catClientMapper.toClient(cat);
   }
 
@@ -27,7 +47,7 @@ export class CatController {
       new CatSearchOptions(cursor ? parseInt(cursor) : null),
     );
     return {
-      cats,
+      cats: cats.map(cat => this.catClientMapper.toClient(cat)),
       next: '<url>',
     }
   }

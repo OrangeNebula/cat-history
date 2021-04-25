@@ -1,13 +1,24 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { CatImage } from './cat-image.entity';
 
 @Entity()
 export class Cat {
   constructor(
     name: string,
     description: string,
+    images?: CatImage[],
   ) {
     this.name = name;
     this.description = description;
+    this.images = images;
   }
 
   @PrimaryGeneratedColumn()
@@ -18,6 +29,9 @@ export class Cat {
 
   @Column('text')
   description: string;
+
+  @OneToMany(() => CatImage, catImage => catImage.cat)
+  images: CatImage[];
 
   @CreateDateColumn()
   createdAt: Date;
