@@ -17,10 +17,14 @@ import { CatClientMapper } from './mapper/cat-client.mapper';
 import { ResponseSearchCatDto } from './dto/response-search-cat.dto';
 import { CatSearchOptions } from './domain/cat-search-options';
 import { FilesInterceptor } from '@nestjs/platform-express';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('cat')
 export class CatController {
+  static PathSearchAPI = 'search';
+
   constructor(
+    private readonly configService: ConfigService,
     private readonly catService: CatService,
     private readonly catClientMapper: CatClientMapper,
   ) {
@@ -40,7 +44,7 @@ export class CatController {
     return this.catClientMapper.toClient(cat);
   }
 
-  @Get('search')
+  @Get(CatController.PathSearchAPI)
   async search(@Query('cursor') cursor?: string): Promise<ResponseSearchCatDto> {
     const cats = await this.catService.findAll(
       // TODO: Use type cast pipeline?
@@ -48,7 +52,8 @@ export class CatController {
     );
     return {
       cats: cats.map(cat => this.catClientMapper.toClient(cat)),
-      next: '<url>',
+      // TODO: Use builder pattern, Use filter option domain entity
+      next: `${this.configService.get('app.host')}:${this.configService.get('app.port')}/cat/${CatController.PathSearchAPI}?cursor=${cats[0].id}`,
     }
   }
 
