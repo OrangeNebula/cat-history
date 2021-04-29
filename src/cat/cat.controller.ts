@@ -2,12 +2,10 @@ import {
   Body,
   Controller,
   Get,
-  HttpException,
-  HttpStatus,
   Param,
   Post,
   Query,
-  UploadedFiles,
+  UploadedFiles, UseFilters,
   UseInterceptors,
 } from '@nestjs/common';
 import { RequestCreateCatDto } from './dto/request-create-cat.dto';
@@ -18,7 +16,10 @@ import { ResponseSearchCatDto } from './dto/response-search-cat.dto';
 import { CatSearchOptions } from './domain/cat-search-options';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { ConfigService } from '@nestjs/config';
+import { NoCatException } from './exceptions/no-cat.exception';
+import { HttpExceptionFilter } from '../core/filter/http-exception.filter';
 
+@UseFilters(new HttpExceptionFilter())
 @Controller('cat')
 export class CatController {
   static PathSearchAPI = 'search';
@@ -61,7 +62,7 @@ export class CatController {
   async get(@Param('id') id: number): Promise<CatDto | null> {
     const cat = await this.catService.find(id);
     if (!cat) {
-      throw new HttpException('Not found.', HttpStatus.NOT_FOUND);
+      throw new NoCatException();
     }
     return this.catClientMapper.toClient(cat);
   }
