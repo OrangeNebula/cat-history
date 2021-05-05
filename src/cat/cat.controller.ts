@@ -1,11 +1,14 @@
 import {
   Body,
   Controller,
-  Get,
+  Get, HttpException,
+  HttpStatus,
   Param,
+  ParseIntPipe,
   Post,
   Query,
-  UploadedFiles, UseFilters,
+  UploadedFiles,
+  UseFilters,
   UseInterceptors,
 } from '@nestjs/common';
 import { RequestCreateCatDto } from './dto/request-create-cat.dto';
@@ -59,7 +62,12 @@ export class CatController {
   }
 
   @Get(':id')
-  async get(@Param('id') id: number): Promise<CatDto | null> {
+  async get(
+    @Param('id', new ParseIntPipe({
+      exceptionFactory: () =>
+        new HttpException('id 는 number 형이어야 합니다.', HttpStatus.NOT_ACCEPTABLE),
+    })) id: number,
+  ): Promise<CatDto | null> {
     const cat = await this.catService.find(id);
     if (!cat) {
       throw new NoCatException();

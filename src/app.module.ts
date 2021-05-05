@@ -1,4 +1,4 @@
-import { Global, Module } from '@nestjs/common';
+import { Global, MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
@@ -7,6 +7,7 @@ import appConfig from './config/app.config';
 import { CatModule } from './cat/cat.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { LoggerMiddleware } from './core/middleware/logger.middleware';
 
 @Global()
 @Module({
@@ -32,4 +33,10 @@ import { diskStorage } from 'multer';
   providers: [AppService],
   exports: [MulterModule],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
