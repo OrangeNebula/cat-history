@@ -42,6 +42,9 @@ Environment files should be placed in root folder.
 - [ ] Add test code for cat service and domain classes.
 - [ ] Upload images mime type validation.
 - [ ] Add pre-commit, test stage.
+- [x] Add User module layout.
+- [ ] Implement get access token logic.
+- [ ] Implement refresh token logic.
 
 ### Reference
  * [NestJs](https://docs.nestjs.com/)
