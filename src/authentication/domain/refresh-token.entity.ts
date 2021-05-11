@@ -10,7 +10,7 @@ export class RefreshToken {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 4096 })
+  @Column('text')
   token: string;
 
   @Column()
