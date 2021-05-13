@@ -45,6 +45,7 @@ Environment files should be placed in root folder.
 - [x] Add User module layout.
 - [ ] Implement get access token logic.
 - [ ] Implement refresh token logic.
+- [ ] Implement IAM feature.
 
 ### Reference
  * [NestJs](https://docs.nestjs.com/)
