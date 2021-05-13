@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 export enum RefreshTokenStatus {
   Available = 'available',
@@ -16,12 +16,6 @@ export class RefreshToken {
   @Column()
   status: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
-
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
 }
