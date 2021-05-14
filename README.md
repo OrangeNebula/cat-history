@@ -46,6 +46,7 @@ Environment files should be placed in root folder.
 - [ ] Implement get access token logic.
 - [ ] Implement refresh token logic.
 - [ ] Implement IAM feature.
+- [ ] Cursor API?
 
 ### Reference
  * [NestJs](https://docs.nestjs.com/)
